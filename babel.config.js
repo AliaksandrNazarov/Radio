@@ -10,6 +10,7 @@ module.exports = {
           '@src': './src',
           '@api': './src/api',
           '@components': './src/components',
+          '@assets': './src/assets',
         },
       },
     ],
