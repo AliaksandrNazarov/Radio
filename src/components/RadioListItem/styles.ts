@@ -3,15 +3,20 @@ import { variables } from '@assets';
 
 export const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    paddingHorizontal: 15,
     backgroundColor: variables.ListItemBackgroundColor,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    alignContent: 'center',
-    padding: 15,
   },
   text: {
     color: variables.ListItemTextColor,
     fontSize: variables.ListItemFontSize,
+  },
+  innerContainer: {
+    backgroundColor: variables.ListItemBackgroundColor,
+    borderBottomWidth: 1,
+    borderBottomColor: variables.ListItemTextColor,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 15,
   },
 });

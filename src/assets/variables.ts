@@ -4,3 +4,4 @@ export const HeaderBackgroundColor = '#e9a360';
 export const HeaderTextColor = '#fff';
 
 export const ListItemFontSize = 25;
+export const FooterSmallFontSize = 12;

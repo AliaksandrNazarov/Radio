@@ -7,7 +7,6 @@ import { styles } from './styles';
 
 const App = () => {
   const [stationsData, setStationsData] = useState<IRadioStation[]>([]);
-
   const [activeSections, setActiveSections] = useState<number[]>([]);
   const [selectedSection, setSelectedSection] = useState<number[]>([]);
 
