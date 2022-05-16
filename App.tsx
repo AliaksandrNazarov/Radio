@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, ScrollView, StatusBar, useColorScheme } from 'react-native';
+import { SafeAreaView, StatusBar, useColorScheme, View, Text } from 'react-native';
 import { fetchRadioData, IRadioStation } from '@api';
+import Accordion from 'react-native-collapsible/Accordion';
+import { RadioListItem, RadioDetails } from '@components';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
-  const [stationsData, setStationsData] = useState<IRadioStation[] | null>(null);
+  const [stationsData, setStationsData] = useState<IRadioStation[]>([]);
+
+  const [activeSections, setActiveSections] = useState<number[]>([]);
+  const [selectedSection, setSelectedSection] = useState<number[]>([]);
 
   useEffect(() => {
     try {
@@ -17,16 +22,41 @@ const App = () => {
     }
   }, []);
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const updateSections = (activeSection: number[]) => {
+    setActiveSections(activeSection);
+    setSelectedSection(activeSection);
   };
 
-  console.log('------------stationsData--------------', stationsData);
+  const selectedSectionItem = stationsData.length ? stationsData[selectedSection[0]] : {};
+
+  const renderContent = () => (
+    <RadioDetails
+      stationsData={stationsData}
+      selectedSection={selectedSection}
+      setSelectedSection={setSelectedSection}
+    />
+  );
+
+  const backgroundStyle = {
+    backgroundColor: Colors.darker,
+    flex: 1,
+  };
+
+  // console.log('------------selectedSection--------------', selectedSection);
 
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView contentInsetAdjustmentBehavior="automatic" style={backgroundStyle} />
+      <Accordion
+        activeSections={activeSections}
+        sections={stationsData}
+        renderHeader={RadioListItem}
+        renderContent={renderContent}
+        onChange={updateSections}
+      />
+      {/* <View style={{ width: '100%', height: 50, backgroundColor: 'red' }}>
+        <Text>{selectedSectionItem?.name || 'nothingx'}</Text>
+      </View> */}
     </SafeAreaView>
   );
 };
