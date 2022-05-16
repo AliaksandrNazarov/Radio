@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'center',
     padding: 15,
-    borderRadius: 50,
   },
   image: {
     width: 200,
@@ -17,5 +16,13 @@ export const styles = StyleSheet.create({
     borderRadius: 100,
     borderWidth: 2,
     borderColor: variables.ListItemTextColor,
+  },
+  circleContainer: {
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
+  circleButtton: {
+    width: 35,
+    height: 35,
   },
 });
