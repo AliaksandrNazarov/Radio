@@ -10,20 +10,15 @@ export interface IRadiosData {
   radios: IRadioStation[];
 }
 
-const fetchRadioData = async (fn?: (data: IRadioStation[]) => void) => {
+const fetchRadioData = async (): Promise<IRadiosData> => {
   const response = await fetch(API_RADIO_ENDPOINT, {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
   });
-  if (response.ok) {
-    const data: IRadiosData = await response.json();
-    if (data.radios) {
-      fn?.(data.radios);
-      return data.radios;
-    }
-  }
+
+  return await response.json();
 };
 
 export { fetchRadioData };

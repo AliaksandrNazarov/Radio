@@ -9,12 +9,15 @@ const powerIcon = require('@assets/icons/power.png');
 
 interface IProps {
   onPowerPress: () => void;
+  onArrowPress: () => void;
 }
 
-const RadioHeader = ({ onPowerPress }: IProps) => {
+const RadioHeader = ({ onPowerPress, onArrowPress }: IProps) => {
   return (
     <View style={styles.container}>
-      <Image source={arrowLeftIcon} style={styles.icon} />
+      <TouchableOpacity onPress={onArrowPress}>
+        <Image source={arrowLeftIcon} style={styles.icon} />
+      </TouchableOpacity>
       <Text style={styles.text}>{STATIONS}</Text>
       <TouchableOpacity onPress={onPowerPress}>
         <Image source={powerIcon} style={styles.icon} />
